@@ -3,19 +3,42 @@ import { ApolloServer } from "apollo-server";
 import datasource from "./utils";
 import { buildSchema } from "type-graphql";
 import { UsersResolver } from "./resolvers/Users";
+import { customAuthChecker } from "./auth";
+
+require('dotenv').config();
 
 const PORT = 5000;
 
 async function bootstrap(): Promise<void> {
   // ... Building schema here
   const schema = await buildSchema({
-    resolvers: [UsersResolver],
+    resolvers: [
+      UsersResolver
+    ],
+    authChecker: customAuthChecker
   });
 
   // Create the GraphQL server
   const server = new ApolloServer({
     schema,
     cors: true,
+    context: ({ req }) => {
+      // get the user token from the headers
+      const authorization = req.headers.authorization || '';
+  
+      if (authorization) {
+        const token = authorization.split(' ').pop()
+        // console.log('token', token)
+
+        return { token }
+      }
+
+      return { token: null }
+      // try to retrieve a user with the token
+      // const user = getUser(token);
+      // add the user to the context
+      // return { user };
+    },
   });
 
   // Start the server

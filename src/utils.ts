@@ -1,15 +1,12 @@
+import { Team } from "./entities/Team";
 import { User } from "./entities/User";
 import { DataSource } from "typeorm";
 
 const datasource = new DataSource({
-  type: "postgres",
-  host: "db",
-  port: 5432,
-  username: "postgres",
-  password: "supersecret",
-  database: "postgres",
+  type: "sqlite",
+  database: "./nba.db",
   synchronize: true,
-  entities: [User],
+  entities: [User,Team],
   logging: ["query", "error"],
 });
 
