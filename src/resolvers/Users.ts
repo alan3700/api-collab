@@ -15,6 +15,7 @@ export class UsersResolver {
     @Arg("data", () => UserInput) data: UserInput
   ): Promise<User> {
     data.password = await hash(data.password);
+    console.log(data)
     return await datasource.getRepository(User).save(data);
   }
 

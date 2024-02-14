@@ -16,6 +16,10 @@ export class User {
   @Column()
   @Field()
   password: string;
+
+  @Column()
+  @Field()
+  pseudo: string;
   
 }
 
@@ -28,4 +32,7 @@ export class UserInput {
   @Field()
   @Length(8, 60)
   password: string;
+
+  @Field()
+  pseudo: string;
 }
