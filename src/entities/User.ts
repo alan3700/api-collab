@@ -33,6 +33,4 @@ export class UserInput {
   @Length(8, 60)
   password: string;
 
-  @Field()
-  pseudo: string;
 }

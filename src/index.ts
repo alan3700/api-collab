@@ -5,6 +5,7 @@ import { buildSchema } from "type-graphql";
 import { UsersResolver } from "./resolvers/Users";
 import { customAuthChecker } from "./auth";
 import { TeamsResolver } from "./resolvers/Teams";
+import { PlayerResolver } from "./resolvers/Player";
 
 require('dotenv').config();
 
@@ -15,7 +16,8 @@ async function bootstrap(): Promise<void> {
   const schema = await buildSchema({
     resolvers: [
       UsersResolver,
-      TeamsResolver
+      TeamsResolver,
+      PlayerResolver
     ],
     authChecker: customAuthChecker
   });
