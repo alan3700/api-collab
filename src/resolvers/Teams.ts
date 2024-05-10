@@ -14,6 +14,6 @@ export class TeamsResolver {
 
   @Query(() => [Team])
   async teams(): Promise<Team[]> {
-    return await datasource.getRepository(Team).find({});
+    return await datasource.getRepository(Team).find({ relations: ['players']});
   }
 }
