@@ -5,18 +5,16 @@ import {Team} from "./Team"
 @Entity()
 @ObjectType()
 export class Player {
-  remove(): any {
-    throw new Error("Method not implemented.");
-  }
+  
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id: number;
 
-  @Column({ unique: true })
+  @Column()
   @Field()
   firstname: string;
 
-  @Column({ unique: true })
+  @Column()
   @Field()
   lastname: string;
 

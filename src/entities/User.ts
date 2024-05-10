@@ -16,10 +16,6 @@ export class User {
   @Column()
   @Field()
   password: string;
-
-  @Column()
-  @Field()
-  pseudo: string;
   
 }
 
